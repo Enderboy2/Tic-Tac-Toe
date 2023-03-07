@@ -2,6 +2,7 @@ from tkinter import *
 import random
 
 def next_turn(row, col):
+    # A Function to determine how the next turn will be played
     global player
     if game_btns[row][col]['text'] == "" and check_winner() == False:
         if player == players[0]:
@@ -35,7 +36,7 @@ def next_turn(row, col):
                 label.config(text=("Tie!"))
 
 def check_winner():
- 
+    # Check if there is any winner after each move and color the winning squares
     for row in range(3):
         if game_btns[row][0]['text'] == game_btns[row][1]['text'] == game_btns[row][2]['text'] != "":
             game_btns[row][0].config(bg="cyan")
@@ -74,6 +75,7 @@ def check_winner():
         return False
 
 def check_empty_spaces():
+    # Check if there is any empty spaces on the board
     spaces = 9
 
     for row in range(3):
@@ -87,6 +89,7 @@ def check_empty_spaces():
         return True
 
 def new_game():
+    # reset the board and start a new game
     global player
     player = random.choice(players)
 
@@ -123,4 +126,4 @@ for row in range(3):
 
         game_btns[row][col].grid(row=row, column=col)
 
-window.mainloop()
+window.mainloop() 
