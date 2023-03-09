@@ -5,57 +5,43 @@ def next_turn(row, col):
     # A Function to determine how the next turn will be played
     global player
     if game_btns[row][col]['text'] == "" and check_winner() == False:
-        if player == players[0]:
 
-            game_btns[row][col]['text'] = player
-
-            if check_winner() == False:
-
+        game_btns[row][col]['text'] = player
+        
+        
+        if check_winner() == False:
+            if player == players[0]:
                 player = players[1]
-                label.config(text=(players[1] + " turn"))
-
-            elif check_winner() == True:
-                label.config(text=(players[0] + " wins!"))
-
-            elif check_winner() == 'tie':
-                label.config(text=("Tie, No Winner!"))
-
-        elif player == players[1]:
-            
-            game_btns[row][col]['text'] = player
-
-            if check_winner() == False:
-             
+            elif player == players[1]:
                 player = players[0]
-                label.config(text=(players[0] + " turn"))
+            label.config(text=(player + " turn"))
 
-            elif check_winner() == True:
-                label.config(text=(players[1] + " wins!"))
+        elif check_winner() == True:
+            label.config(text=(player + " wins!"))
 
-            elif check_winner() == 'tie':
-                label.config(text=("Tie!"))
+        elif check_winner() == 'tie':
+            label.config(text=("Tie, No Winner!"))
 
 def check_winner():
     # Check if there is any winner after each move and color the winning squares
     for row in range(3):
         if game_btns[row][0]['text'] == game_btns[row][1]['text'] == game_btns[row][2]['text'] != "":
-            game_btns[row][0].config(bg="cyan")
-            game_btns[row][1].config(bg="cyan")
-            game_btns[row][2].config(bg="cyan")
+            for i in range(3):
+                game_btns[row][i].config(bg="cyan")
             return True
 
  
     for col in range(3):
         if game_btns[0][col]['text'] == game_btns[1][col]['text'] == game_btns[2][col]['text'] != "":
-            game_btns[0][col].config(bg="cyan")
-            game_btns[1][col].config(bg="cyan")
-            game_btns[2][col].config(bg="cyan")
+            for i in range(3):
+                game_btns[i][col].config(bg="cyan")
+
             return True
 
     if game_btns[0][0]['text'] == game_btns[1][1]['text'] == game_btns[2][2]['text'] != "":
-        game_btns[0][0].config(bg="cyan")
-        game_btns[1][1].config(bg="cyan")
-        game_btns[2][2].config(bg="cyan")
+        for i in range(3):
+            game_btns[i][i].config(bg="cyan")
+
         return True
     elif game_btns[0][2]['text'] == game_btns[1][1]['text'] == game_btns[2][0]['text'] != "":
         game_btns[0][2].config(bg="cyan")
