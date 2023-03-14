@@ -23,7 +23,8 @@ def next_turn(row, col):
 
 
 def check_winner():
-    # Check if there is any winner after each move and color the winning squares
+    # Check if there is any winner after each move
+    # and color the winning squares
     for row in range(3):
         if (
             game_btns[row][0]["text"]
